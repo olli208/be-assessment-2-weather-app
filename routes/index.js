@@ -10,5 +10,6 @@ var indexController = require('../controllers/indexController');
 
 // Oauth
 router.get('/', indexController.index);
+router.post('/new-user', indexController.newUser);
 
 module.exports = router;
