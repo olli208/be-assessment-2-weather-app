@@ -1,48 +1,14 @@
 <% include partials/head.ejs %>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-
-
-<% if (!loggendIn) { %> 
-
-    <section class="log-in">
-        <h1>create user</h1>
-
-        <section class="">
-            <form action="/new-user" method="post">
-                <fieldset class="create_user">
-                    <legend>create user</legend>
-                    <input type="text" name="username" value="" autofocus required>
-                    <input type="password" name="password" value="" required>
-                </fieldset>
-                
-                <fieldset class="add_location">
-                    <legend>add location</legend>
-                    <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
-                    <input type="hidden" id="location_Lat" name="location_Lat" />
-                    <input type="hidden" id="location_Lng" name="location_Lng" />  
-
-                    Select a image: <input type="file" name="myFile">                
-                </fieldset>
-
-                <input type="submit" value="create profile">
-            </form>
-        </section>
-    </section>
-
-<% } else { %>
+  <section class="">
+    <h1>welcome back, <%= userName %></h1>
 
     <section class="">
-        <h1>welcome back, <%= userName %></h1>
-
-        <section class="">
-            <h2>the weather in <%= location %> is</h2>
-            temp: <%= temp %>
-            hourly: <%= hourly %>
-            daily: <%= daily %>
-        </section>
+        <h2>the weather in <%= location %> is</h2>
+        temp: <%= temp %>
+        hourly: <%= hourly %>
+        daily: <%= daily %>
     </section>
-
-<% } %>
+  </section>
 
 <% include partials/footer.ejs %>

@@ -5,6 +5,10 @@ var compression = require('compression');
 var session = require('express-session');
 var helpers = require('./helpers');
 var mongoose = require('mongoose');
+var passport = require('passport');
+
+require('./models/User');
+require('./handlers/passport');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -17,8 +21,6 @@ mongoose.connect(process.env.mongo)
 mongoose.connection.on('error' , function (err) {
   console.log('Something went wrong with MONGODB ->' , err.message)
 });
-
-require('./models/User');
 
 // Setup and middleware
 app.set('view engine' , 'ejs')
@@ -37,6 +39,8 @@ app.set('view engine' , 'ejs')
     resave: false, 
     saveUninitialized: true
   }))
+  .use(passport.initialize())
+  .use(passport.session())
 
 // My Routes
 app.use('/', require('./routes/index'));

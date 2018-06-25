@@ -7,9 +7,12 @@ require('dotenv').config(); // secret stuff
 
 // Controller imports
 var indexController = require('../controllers/indexController');
+var authController = require('../controllers/authController');
 
 // Oauth
-router.get('/', indexController.index);
-router.post('/new-user', indexController.newUser);
+router.get('/', authController.renderLogin);
+router.get('/index', indexController.index);
+
+router.post('/register', authController.register, authController.login);
 
 module.exports = router;
