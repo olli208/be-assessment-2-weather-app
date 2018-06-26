@@ -6,24 +6,38 @@ exports.renderLogin = function(req , res) {
   res.render('login');
 }
 
+exports.renderRegister = (req, res) => {
+  res.render('register');
+}
+
 exports.register = function(req, res, next) {
+  console.log('REGISTER BODY' , req.body)
   var userObject = {
     username: req.body.username,
-    location: {
+    locations: [{
       address: req.body.address,
       lat: req.body.location_Lat,
       lng: req.body.location_Lng,
       image: ''
-    }
+    }]
   }
 
   const user = new User(userObject)
 
   User.register(user, req.body.password , function(err, user) {
-    console.log(user);
+    console.log('NEW USER' , user);
     next()
   });
+}
 
+exports.addLocation = (req, res) => {
+  var locationQuery = {
+      address: req.body.address,
+      lat: req.body.location_Lat,
+      lng: req.body.location_Lng,
+  }
+
+  console.log('ADD LOCATION' , locationQuery);
 }
 
 exports.login = passport.authenticate('local', {

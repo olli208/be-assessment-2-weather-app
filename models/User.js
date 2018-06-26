@@ -2,15 +2,16 @@ var mongoose = require('mongoose');
 var passportLocalMongooes = require('passport-local-mongoose');
 mongoose.Promise = global.Promise;
 
-// The models for the database will be here.
+var locationSchema = new mongoose.Schema({
+  address: String,
+  lat: Number,
+  lng: Number,
+  image: String
+})
+
 var userSchema = new mongoose.Schema({
   username: { type: String, unique: true },
-  location: {
-    address: String,
-    lat: Number,
-    lng: Number,
-    image: String
-  }
+  locations: [locationSchema]
 })
 
 userSchema.plugin(passportLocalMongooes , {usernameField: 'username'})

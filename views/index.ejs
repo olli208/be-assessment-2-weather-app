@@ -23,44 +23,23 @@
 
   <% if (user) { %>
   <!-- LOGGED IN --> 
-
-  <section class="">
+  <section class="user_logged-in">
     <h1>welcome back, <%= user.username %></h1>
+    
+    <% locations.forEach(function (el) { %>
+      <div class="weather_card">
+        <h2>the weather in <%= el.address %> is</h2>
+        temp: <%= el.temp %>
+        hourly: <%= el.hourly %>
+        daily: <%= el.daily %>
+      </div>
+    <% }) %>
 
-    <% if (address) { %>
-    <!-- LOGGEN IN WITH ADRESS -->
-
-    <section class="weather_card">
-        <h2>the weather in <%= address %> is</h2>
-        temp: <%= temp %>
-        hourly: <%= hourly %>
-        daily: <%= daily %>
-    </section>
-
-    <section>
-      add location...
-      <form action="/add-location" method="post">        
-          <fieldset class="add_location">
-              <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
-              <input type="hidden" id="location_Lat" name="location_Lat" />
-              <input type="hidden" id="location_Lng" name="location_Lng" />             
-          </fieldset>
-
-          <input type="submit" value="search">
-      </form>
-
-  <% } else { %>
-  <!-- LOGGED IN WITHOUT ADDRESS -->
-  
-  <section class="weather_card">
-    <h2>the weather in <%= user.location.address %> is</h2>
-    temp: <%= temp %>
-    hourly: <%= hourly %>
-    daily: <%= daily %>
-  </section>
-
-  <% } %>
-
+    <div>
+      <h2>add location</h2>
+      <% include partials/add-location.ejs %>
+      <input type="submit" value="add">
+    </div>
   </section>
 
   <% } else { %>
@@ -85,33 +64,18 @@
             hourly: <%= hourly %>
             daily: <%= daily %>
         </section>
+      </section>
 
     <% } else { %>
 
-    no address
       <section>
         Whats the weather in...
-        <form action="/get-weather" method="post">        
-            <fieldset class="add_location">
-                <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" required>
-                <input type="hidden" id="location_Lat" name="location_Lat" />
-                <input type="hidden" id="location_Lng" name="location_Lng" />             
-            </fieldset>
-
-            <input type="submit" value="search">
-        </form>
+        <% include partials/get-weather.ejs %>  
+        <input type="submit" value="search">
       </section>
 
     <% } %>
 
   <% } %>
-
-
-
-<script>
-  var placesAutocomplete = places({
-    container: document.querySelector('#searchTextField')
-  });
-</script>
 
 <% include partials/footer.ejs %>

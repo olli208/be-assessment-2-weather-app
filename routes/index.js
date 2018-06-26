@@ -13,13 +13,16 @@ var userController = require('../controllers/userController');
 
 // Oauth
 router.get('/login', authController.renderLogin);
+router.get('/register', authController.renderRegister);
+
 router.get('/', indexController.index, weatherController.search);
 router.get('/home', indexController.home);
 router.get('/logout', authController.logout);
 
+
 router.post('/login', authController.login);
 router.post('/register', authController.register, authController.login);
 router.post('/get-weather', weatherController.search);
-router.post('/add-location', userController.add);
+router.post('/add-location', authController.addLocation);
 
 module.exports = router;

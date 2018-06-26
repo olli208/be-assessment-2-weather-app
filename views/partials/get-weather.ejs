@@ -1,0 +1,9 @@
+<form action="/get-weather" method="post">        
+<fieldset class="add_location">
+    <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
+    <input type="hidden" id="location_Lat" name="location_Lat" />
+    <input type="hidden" id="location_Lng" name="location_Lng" />             
+</fieldset>
+
+<input type="submit" value="search">
+</form>    
