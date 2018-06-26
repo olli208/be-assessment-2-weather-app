@@ -64,7 +64,6 @@ exports.search = (req, res) => {
       .catch(err => {
         console.log(err)
       });
-    
   }
 }
 
@@ -81,5 +80,3 @@ function getLocation(req) {
     }
   }
 }
-
-

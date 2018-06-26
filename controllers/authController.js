@@ -11,7 +11,6 @@ exports.renderRegister = (req, res) => {
 }
 
 exports.register = function(req, res, next) {
-  console.log('REGISTER BODY' , req.body)
   var userObject = {
     username: req.body.username,
     locations: [{
@@ -36,6 +35,22 @@ exports.addLocation = (req, res) => {
       lat: req.body.location_Lat,
       lng: req.body.location_Lng,
   }
+
+  User.findOne({username: req.user.username})
+    .then(function(obj) {
+      console.log(obj);
+      obj.locations.push(locationQuery);
+      obj.save()
+        .then(function(){
+          res.redirect('/')
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
 
   console.log('ADD LOCATION' , locationQuery);
 }
