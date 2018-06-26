@@ -1,14 +1,73 @@
 <% include partials/head.ejs %>
 
+  <header>
+    <% if (user) { %>
+    <a href="/logout">logout</a>
+    <% } else {%>
+    <a href="/login">login</a>
+    <a href="/register">register</a>
+    <% } %>
+  </header>
+
+  <!-- Show pop up message after user updates game -->
+  <% if(locals.flashes) { %>
+    <% var categories =  Object.keys(flashes); %>
+    <% categories.forEach(function (cat) { %>
+      <% flashes[cat].forEach(message => { %>
+          <div class="flash-message"> 
+            <p><%= message %></p> 
+          </div>
+      <% }) %>
+    <% }) %>
+  <% } %>
+
+  <% if (user) { %>
+
   <section class="">
-    <h1>welcome back, <%= userName %></h1>
+    <h1>welcome back, <%= user.username %></h1>
 
     <section class="">
-        <h2>the weather in <%= location %> is</h2>
+        <h2>the weather in <%= user.location.address %> is</h2>
         temp: <%= temp %>
         hourly: <%= hourly %>
         daily: <%= daily %>
     </section>
+
+    <section>
+      <form action="/add-location" method="post">        
+          <fieldset class="add_location">
+              <legend>add location</legend>
+              <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
+              <input type="hidden" id="location_Lat" name="location_Lat" />
+              <input type="hidden" id="location_Lng" name="location_Lng" />             
+          </fieldset>
+
+          <input type="submit" value="add">
+      </form>
+    </section>
+
   </section>
+
+  <% } else { %>
+
+  <section>
+    Whats the weather in...
+    <form action="/get-weather" method="post">        
+        <fieldset class="add_location">
+            <legend>add location</legend>
+            <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
+            <input type="hidden" id="location_Lat" name="location_Lat" />
+            <input type="hidden" id="location_Lng" name="location_Lng" />             
+        </fieldset>
+
+        <input type="submit" value="search">
+    </form>
+  </section>
+
+  <% } %>
+
+
+
+
 
 <% include partials/footer.ejs %>

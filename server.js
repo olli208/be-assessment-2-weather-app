@@ -6,6 +6,7 @@ var session = require('express-session');
 var helpers = require('./helpers');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var flash = require('connect-flash');
 
 require('./models/User');
 require('./handlers/passport');
@@ -39,8 +40,15 @@ app.set('view engine' , 'ejs')
     resave: false, 
     saveUninitialized: true
   }))
+  .use(flash())
   .use(passport.initialize())
-  .use(passport.session())
+  .use(passport.session());
+
+  app.use(function (req, res, next) {
+    res.locals.h = helpers;
+    res.locals.flashes = req.flash();
+    next();
+  })
 
 // My Routes
 app.use('/', require('./routes/index'));
