@@ -13,7 +13,8 @@ var userController = require('../controllers/userController');
 
 // Oauth
 router.get('/login', authController.renderLogin);
-router.get('/', indexController.index);
+router.get('/', indexController.index, weatherController.search);
+router.get('/home', indexController.home);
 router.get('/logout', authController.logout);
 
 router.post('/login', authController.login);

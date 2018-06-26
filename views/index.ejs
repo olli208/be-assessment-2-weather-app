@@ -22,52 +22,96 @@
   <% } %>
 
   <% if (user) { %>
+  <!-- LOGGED IN --> 
 
   <section class="">
     <h1>welcome back, <%= user.username %></h1>
 
-    <section class="">
-        <h2>the weather in <%= user.location.address %> is</h2>
+    <% if (address) { %>
+    <!-- LOGGEN IN WITH ADRESS -->
+
+    <section class="weather_card">
+        <h2>the weather in <%= address %> is</h2>
         temp: <%= temp %>
         hourly: <%= hourly %>
         daily: <%= daily %>
     </section>
 
     <section>
+      add location...
       <form action="/add-location" method="post">        
           <fieldset class="add_location">
-              <legend>add location</legend>
-              <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
+              <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
               <input type="hidden" id="location_Lat" name="location_Lat" />
               <input type="hidden" id="location_Lng" name="location_Lng" />             
           </fieldset>
 
-          <input type="submit" value="add">
+          <input type="submit" value="search">
       </form>
-    </section>
+
+  <% } else { %>
+  <!-- LOGGED IN WITHOUT ADDRESS -->
+  
+  <section class="weather_card">
+    <h2>the weather in <%= user.location.address %> is</h2>
+    temp: <%= temp %>
+    hourly: <%= hourly %>
+    daily: <%= daily %>
+  </section>
+
+  <% } %>
 
   </section>
 
   <% } else { %>
 
-  <section>
-    Whats the weather in...
-    <form action="/get-weather" method="post">        
-        <fieldset class="add_location">
-            <legend>add location</legend>
-            <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
-            <input type="hidden" id="location_Lat" name="location_Lat" />
-            <input type="hidden" id="location_Lng" name="location_Lng" />             
-        </fieldset>
+    <% if (address) { %>
 
-        <input type="submit" value="search">
-    </form>
-  </section>
+      <section>
+        Whats the weather in...
+        <form action="/get-weather" method="post">        
+            <fieldset class="add_location">
+                <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
+                <input type="hidden" id="location_Lat" name="location_Lat" />
+                <input type="hidden" id="location_Lng" name="location_Lng" />             
+            </fieldset>
+
+            <input type="submit" value="search">
+        </form>                                         
+
+        <section class="weather_card">
+            <h2>the weather in <%= address %> is</h2>
+            temp: <%= temp %>     
+            hourly: <%= hourly %>
+            daily: <%= daily %>
+        </section>
+
+    <% } else { %>
+
+    no address
+      <section>
+        Whats the weather in...
+        <form action="/get-weather" method="post">        
+            <fieldset class="add_location">
+                <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" required>
+                <input type="hidden" id="location_Lat" name="location_Lat" />
+                <input type="hidden" id="location_Lng" name="location_Lng" />             
+            </fieldset>
+
+            <input type="submit" value="search">
+        </form>
+      </section>
+
+    <% } %>
 
   <% } %>
 
 
 
-
+<script>
+  var placesAutocomplete = places({
+    container: document.querySelector('#searchTextField')
+  });
+</script>
 
 <% include partials/footer.ejs %>
