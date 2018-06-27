@@ -1,8 +1,6 @@
 <% include partials/head.ejs %>
 
-    <section class="log-in">
-        <h1>login</h1>
-
+    <section class="login">
         <!-- Show pop up message after user updates game -->
         <% if(locals.flashes) { %>
         <% var categories =  Object.keys(flashes); %>
@@ -15,16 +13,20 @@
         <% }) %>
         <% } %>
 
-        <section class="">
-            <form action="/login" method="post">
+        <div class="login_section">
+            <h1>login to weather app ☀️</h1>
+            <form action="/login" method="post" class="add_location-form">
                 <fieldset class="create_user">
+                    <label for="username"><h3>username</h3></label>
                     <input type="text" name="username" value="" autofocus required>
+
+                    <label for="password"><h3>password</h3></label>
                     <input type="password" name="password" value="" required>
                 </fieldset>
                 
                 <input type="submit" value="login">
             </form>
-        </section>
+        </div>
     </section>
 
 <% include partials/footer.ejs %>

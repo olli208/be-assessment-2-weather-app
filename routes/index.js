@@ -18,11 +18,18 @@ router.get('/register', authController.renderRegister);
 router.get('/', indexController.index, weatherController.search);
 router.get('/home', indexController.home);
 router.get('/logout', authController.logout);
-
+router.get('/remove-location/:id', authController.removeLocation);
 
 router.post('/login', authController.login);
-router.post('/register', authController.register, authController.login);
+router.post('/register', 
+authController.upload, 
+authController.resize, 
+authController.register, 
+authController.login);
 router.post('/get-weather', weatherController.search);
-router.post('/add-location', authController.addLocation);
+router.post('/add-location', 
+authController.upload, 
+authController.resize, 
+authController.addLocation);
 
 module.exports = router;

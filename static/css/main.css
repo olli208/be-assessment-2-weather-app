@@ -1,0 +1,204 @@
+@import url("fonts.css");
+
+body, html {
+  margin: 0
+}
+
+h1, h2, a, input[type="submit"], input[type="button"], input[type="file"] {
+  font-family: 'Product Sans', 'Roboto', arial,  sans-serif;
+  font-weight: 500;
+  /* color: #202124;  */
+}
+
+body, p {
+  font-family: 'Roboto', arial, sans-serif;
+  line-height: 1.35;
+  color: #202124;
+}
+
+a {
+  font-family: 'Product Sans', 'Roboto', arial,  sans-serif;
+  color: #202124; 
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 3em; 
+  margin: 0;
+  color: #202124;
+  /* padding: 0 1.5rem; */
+}
+
+h2 {
+  font-size: 1.5em; 
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.17em; 
+  margin: 0;
+}
+
+header, footer {
+  padding: 1rem 1.5rem;
+}
+
+header {
+  background: #f9f9f9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+header ul li {
+  margin: 0 1rem;
+}
+
+section {
+  /* margin: 1rem 0; */
+}
+
+.login {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.login_section {
+  align-content: center;
+  height: min-content;
+}
+
+.login_section label {
+  /* margin-bottom: 1rem; */
+}
+
+.login_section .create_user {
+  border: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.login_section input[type="text"],
+.login_section input[type="password"] {
+  font-family: 'Product Sans', 'Roboto', arial,  sans-serif;
+  border-radius: 500px;
+  padding: .5rem;
+  border: 1px solid #666666;
+  margin-bottom: 1.5rem;
+}
+
+.login_section input[type="file"] {
+  font-family: 'Product Sans', 'Roboto', arial, sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.login .add_location {
+  padding: 0!important;
+}
+
+.welcome_msg {
+  padding: .5rem 1rem;
+  background: #f9f9f9;
+}
+
+.weather_card-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  /* background: pink; */
+  width: 100%;
+  margin: 3rem 0;
+}
+
+.weather_card-container li {
+  width: 50%;
+  margin-bottom: 2.5rem;
+}
+
+.weather_card {
+  padding: 0 1rem;
+}
+
+.weather_card > div {
+  background: #ffffff;
+  min-height: 15em;
+  border-radius: 8px;
+}
+
+.weather_card-summary {
+  background: lightblue;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit; 
+  padding: 1rem .5rem;
+  color: #ffffff!important;
+}
+
+.weather_card-week {
+  padding: 0 .5rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.add_location {
+  padding: 0 1rem;
+}
+
+.add_location-form {
+  border: 0;
+}
+
+.add_location-form fieldset {
+  border: 0;
+  padding: 0;
+}
+
+.add_location-form input {
+  margin: .5rem 0;
+}
+
+button, input[type="button"], input[type="submit"] {
+  background: #f9f9f9;
+  border: #666666;
+  padding: .5rem 1rem;
+  transition: 200ms ease-in;
+  border-radius: 500px;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  background: greenyellow;
+  color: #666666;
+  text-decoration: underline;
+}
+
+button:hover, input[type="submit"]:hover {
+  background: #666666;
+}
+
+button:hover a, input[type="submit"]:hover {
+  color: #ffffff
+}
+
+#searchTextField {
+  border-radius: 500px;
+}
+
+.ap-input-icon {
+  display: none!important;
+}

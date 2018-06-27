@@ -1,24 +1,26 @@
 <% include partials/head.ejs %>
 
-    <section class="log-in">
-        <h1>create user</h1>
-
-        <section class="">
-            <form action="/register" method="post">
-                <fieldset class="create_user">
-                    <legend>create user</legend>
+    <section class="login">
+        <div class="login_section">
+            <h1>create user</h1>
+            <form action="/register" method="post" enctype="multipart/form-data">
+                <div class="create_user">
+                    <label for="username"><h3>username</h3></label>
                     <input type="text" name="username" value="" autofocus required>
+
+                    <label for="password"><h3>password</h3></label>
                     <input type="password" name="password" value="" required>
-                </fieldset>
+                </div>
                 
-                <fieldset class="add_location">
-                    <legend>add location</legend>
+                <div class="add_location">
+                    <label for="address"><h3>add location</h3></label>
                     <input id="searchTextField" class="g-maps_autocomplete" type="text" placeholder="search location" name="address" required>
                     <input type="hidden" id="location_Lat" name="location_Lat" />
                     <input type="hidden" id="location_Lng" name="location_Lng" />  
 
-                    Select a image: <input type="file" name="myFile">                
-                </fieldset>
+                    <label for="photo"><h3>add photo</h3></label>
+                    <input type="file" name="photo" accept="image/gif, image/png, image/jpeg">       
+                </div>
 
                 <input type="submit" value="create profile">
             </form>

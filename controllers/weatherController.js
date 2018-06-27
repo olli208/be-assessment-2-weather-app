@@ -37,10 +37,12 @@ exports.search = (req, res) => {
 
           var weatherData = {
             address: obj.address,
+            id: obj.id,
             hourly: data.hourly.summary,
             daily: data.daily.summary,
             temp: data.currently.temperature,
             currently: data.currently.summary,
+            image: obj.image
           }
 
           return weatherData;
@@ -77,6 +79,7 @@ function getLocation(req) {
       address: req.body.address,
       lat: req.body.location_Lat,
       lng: req.body.location_Lng,
+      id: req.body._id
     }
   }
 }

@@ -1,48 +1,75 @@
 <% include partials/head.ejs %>
 
   <header>
-    <% if (user) { %>
-    <a href="/logout">logout</a>
-    <% } else {%>
-    <a href="/login">login</a>
-    <a href="/register">register</a>
-    <% } %>
+    <ul>
+      <% if (user) { %>
+      <li>
+        <a href="/logout">logout</a>
+      </li>
+      <% } else { %>
+      <li>
+        <a href="/login">login</a>
+      </li>
+      <li>
+        <a href="/register">register</a>
+      </li>
+      <% } %>
+    </ul>
   </header>
-
-  <!-- Show pop up message after user updates game -->
-  <% if(locals.flashes) { %>
-    <% var categories =  Object.keys(flashes); %>
-    <% categories.forEach(function (cat) { %>
-      <% flashes[cat].forEach(message => { %>
-          <div class="flash-message"> 
-            <p><%= message %></p> 
-          </div>
-      <% }) %>
-    <% }) %>
-  <% } %>
 
   <% if (user) { %>
   <!-- LOGGED IN --> 
   <section class="user_logged-in">
-    <h1>hello, <%= user.username %></h1>
-    
-    <% locations.forEach(function (el) { %>
-      <div class="weather_card">
-        <h2>the weather in <%= el.address %> is</h2>
-        temp: <%= el.temp %>
-        hourly: <%= el.hourly %>
-        daily: <%= el.daily %>
-      </div>
-    <% }) %>
+    <div class="welcome_msg">
+        <!-- Show pop up message after user updates game -->
+    <% if(locals.flashes) { %>
+      <% var categories =  Object.keys(flashes); %>
+      <% categories.forEach(function (cat) { %>
+        <% flashes[cat].forEach(message => { %>
+            <div class="flash-message"> 
+              <h1><%= message %> <%= user.username %></h1> 
+            </div>
+        <% }) %>
+      <% }) %>
+    <% } %>
+      <h2>here are the weather forecasts for <% locations.forEach(function (el) { %> 
+        <%= el.address.split(',')[0] %><span class="oxford">,</span>
+      <% }) %></h2>    
+    </div>
 
-    <div>
-      <h2>add location</h2>
-      <form action="/add-location" method="post">
-        <% include partials/add-location.ejs %>
+    <div class="weather_card-container">
+      <ul>
+      <% locations.forEach(function (el) { %>
+        <li>
+          <div class="weather_card">
+            <div>
+              <div class="weather_card-summary">
+                <img src="./uploads/<%= el.image %>" alt="">
+                <h2><%= Math.round(el.temp) %>°C</h2>
+                <h2>currently in <%= el.address %>.</h2>
+              </div>
 
-        <input type="submit" value="add">
-      </form>
+              <div class="weather_card-week">
+                <p>today: <%= el.hourly.toLowerCase() %> This week: <%= el.daily %></p>
+
+                <button class=""><a href="/edit-location/<%= el.id %>">edit</a></button>
+                <button class=""><a href="/remove-location/<%= el.id %>">remove</a></button>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% }) %>
+        <li>
+          <div class="add_location weather_card">
+            <h2>add location</h2>
+            <form class="add_location-form" action="/add-location" method="post" enctype="multipart/form-data">
+              <% include partials/add-location.ejs %>
       
+              <input type="submit" value="add">
+            </form>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -51,7 +78,7 @@
     <% if (address) { %>
       <section>
         Whats the weather in...
-        <form action="/get-weather" method="post">        
+        <form action="/get-weather" method="post" class="add_location-form">        
           <fieldset class="add_location">
             <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
             <input type="hidden" id="location_Lat" name="location_Lat" />
@@ -73,10 +100,13 @@
       <section>
         Whats the weather in...
         <% include partials/get-weather.ejs %>  
-        <input type="submit" value="search">
       </section>
 
     <% } %>
   <% } %>
+
+  <footer>
+    Powered by <a href="https://darksky.net/forecast/40.7127,-74.0059/us12/en">Dark Sky</a>
+  </footer>
 
 <% include partials/footer.ejs %>
