@@ -132,16 +132,12 @@ exports.editLocation = (req, res) => {
 }
 
 exports.updateLocation = (req, res) => {
-  // console.log('EDITTT' , req.body, req.params )
-
   var updateLocation = {
     address: req.body.address,
     lat: req.body.location_Lat,
     lng: req.body.location_Lng,
     image: req.body.photo
   }
-
-  // console.log('UPDATEEEEEE -->', updateLocation);
   
   User.findOneAndUpdate(
     { "_id": req.params.userid, "locations._id": req.params.id },
@@ -152,10 +148,8 @@ exports.updateLocation = (req, res) => {
   })
   .then(function(obj) {
     res.redirect('/');
-
   })
   .catch(function(err) {
     console.log('ERROR EDIT LOCATION' ,err);
   })
-
 }
