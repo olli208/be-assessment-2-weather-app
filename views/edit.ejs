@@ -1,0 +1,16 @@
+<% include partials/head.ejs %>
+
+<section class="login">
+  <div class="login_section">
+    <div class="add_location weather_card">
+      <h2>edit location</h2>
+      <form class="add_location-form" action="/<%= user._id %>/edit/<%= id %>" method="post" enctype="multipart/form-data">
+        <% include partials/add-location.ejs %>
+
+        <input type="submit" value="edit">
+      </form>
+    </div>
+  </div>
+</section>
+
+<% include partials/footer.ejs %>

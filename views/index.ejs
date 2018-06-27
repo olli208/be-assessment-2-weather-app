@@ -43,8 +43,7 @@
         <li>
           <div class="weather_card">
             <div>
-              <div class="weather_card-summary">
-                <img src="./uploads/<%= el.image %>" alt="">
+              <div class="weather_card-summary" data-img="./uploads/<%= el.image %>">
                 <h2><%= Math.round(el.temp) %>°C</h2>
                 <h2>currently in <%= el.address %>.</h2>
               </div>
@@ -52,8 +51,8 @@
               <div class="weather_card-week">
                 <p>today: <%= el.hourly.toLowerCase() %> This week: <%= el.daily %></p>
 
-                <button class=""><a href="/edit-location/<%= el.id %>">edit</a></button>
-                <button class=""><a href="/remove-location/<%= el.id %>">remove</a></button>
+                <button class=""><a href="<%= user._id %>/edit/<%= el.id %>">edit</a></button>
+                <button class=""><a href="<%= user._id %>/remove/<%= el.id %>">remove</a></button>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 <fieldset class="add_location">
-  <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" required>
-  <input type="hidden" id="location_Lat" name="location_Lat" />
-  <input type="hidden" id="location_Lng" name="location_Lng" />  
+  <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= typeof address!='undefined' ? address : '' %>" required>
+  <input type="hidden" id="location_Lat" name="location_Lat" value="<%= typeof lat!='undefined' ? lat : '' %>"/>
+  <input type="hidden" id="location_Lng" name="location_Lng"  value="<%= typeof lng!='undefined' ? lng : '' %>"/>  
 
   <label for="photo"><h3>add photo</h3></label>
-  <input type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg"/>     
+  <input type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg" value="<%= typeof image!='undefined' ? image : '' %>" />     
 </fieldset>

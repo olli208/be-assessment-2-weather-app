@@ -70,7 +70,7 @@ exports.search = (req, res) => {
 }
 
 function getLocation(req) {
-  console.log('USER -->' , req.user)
+  // console.log('USER -->' , req.user)
 
   if (req.user) {
     return req.user.locations
