@@ -53,6 +53,6 @@ app.set('view engine' , 'ejs')
 // My Routes
 app.use('/', require('./routes/index'));
 
-server.listen(9999, function (){
-    console.log('server is running on: ' + 9999);
+server.listen(process.env.PORT, function (){
+    console.log('server is running on: ' + process.env.PORT);
 })
