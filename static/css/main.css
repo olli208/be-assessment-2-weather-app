@@ -1,7 +1,8 @@
 @import url("fonts.css");
 
 body, html {
-  margin: 0
+  margin: 0;
+  min-height: 100%;
 }
 
 h1, h2, a, input[type="submit"], input[type="button"], input[type="file"] {
@@ -185,7 +186,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 input[type="submit"] {
-  background: greenyellow;
+  background: gold;
   color: #666666;
   text-decoration: underline;
 }
@@ -204,4 +205,26 @@ button:hover a, input[type="submit"]:hover {
 
 .ap-input-icon {
   display: none!important;
+}
+
+.user_logged-out {
+  height: 100%;
+}
+
+.user_logged-in {
+  padding: 0 .5rem;
+}
+
+.user_logged-out fieldset {
+  border: none;
+}
+
+.search_section {
+  background: #f9f9f9;
+  padding: 0 1.5rem;
+}
+
+.user_logged-out .weather_card {
+  width: 50%;
+  margin: 3rem auto;
 }

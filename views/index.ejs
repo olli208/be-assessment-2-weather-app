@@ -75,30 +75,44 @@
   <% } else { %>
 
     <% if (address) { %>
-      <section>
-        Whats the weather in...
-        <form action="/get-weather" method="post" class="add_location-form">        
-          <fieldset class="add_location">
-            <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
-            <input type="hidden" id="location_Lat" name="location_Lat" />
-            <input type="hidden" id="location_Lng" name="location_Lng" />             
-          </fieldset>
+      <section class="user_logged-out">
+        <div class="search_section">
+          <h2>Whats the weather in...</h2>
+          <form action="/get-weather" method="post" class="add_location-form">        
+            <fieldset class="add_location">
+              <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
+              <input type="hidden" id="location_Lat" name="location_Lat" />
+              <input type="hidden" id="location_Lng" name="location_Lng" />             
+            </fieldset>
+          </form> 
+        </div>
+                                        
+        <div class="weather_card">
+          <div>
+            <div class="weather_card-summary">
+              <h2><%= Math.round(temp) %>°C</h2>
+              <h2>currently in <%= address %>.</h2>
+            </div>
 
-          <input type="submit" value="search">
-        </form>                                         
-
-        <section class="weather_card">
-          <h2>the weather in <%= address %> is</h2>
-          temp: <%= temp %>     
-          hourly: <%= hourly %>
-          daily: <%= daily %>
-        </section>
+            <div class="weather_card-week">
+              <p>today: <%= hourly.toLowerCase() %> This week: <%= daily %></p>
+            </div>
+          </div>
+        </div>
       </section>
 
     <% } else { %>
-      <section>
-        Whats the weather in...
-        <% include partials/get-weather.ejs %>  
+      <section class="user_logged-out">
+        <div class="search_section">
+          <h2>Whats the weather in...</h2>
+          <form action="/get-weather" method="post" class="add_location-form">        
+            <fieldset class="add_location">
+              <input id="searchTextField" class="maps_autocomplete" type="text" placeholder="search location" name="address" value="<%= address %>" required>
+              <input type="hidden" id="location_Lat" name="location_Lat" />
+              <input type="hidden" id="location_Lng" name="location_Lng" />             
+            </fieldset>
+          </form> 
+        </div>
       </section>
 
     <% } %>
