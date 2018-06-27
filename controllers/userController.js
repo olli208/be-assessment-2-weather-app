@@ -33,7 +33,6 @@ exports.resize = async (req, res, next) => {
   await photo.write(`./static/uploads/${req.body.photo}`);
 
   next();
-
 }
 
 exports.renderLogin = function(req , res) {
@@ -142,17 +141,15 @@ exports.updateLocation = (req, res) => {
     image: req.body.photo
   }
 
-  console.log('UPDATEEEEEE -->', updateLocation)
+  // console.log('UPDATEEEEEE -->', updateLocation);
   
-  User.findOneAndUpdate({
-    'locations': {
-      $elemMatch : {
-        '_id' : req.params.id
-      }
+  User.findOneAndUpdate(
+    { "_id": req.params.userid, "locations._id": req.params.id },
+    { 
+      "$set": {
+        "locations.$": updateLocation
     }
-  },
-  { locations: [updateLocation] },
-  {new: true})
+  })
   .then(function(obj) {
     res.redirect('/');
 
