@@ -1,5 +1,9 @@
 @import url("fonts.css");
 
+* {
+  box-sizing: border-box;
+}
+
 body, html {
   margin: 0;
   min-height: 100%;
@@ -44,6 +48,13 @@ header, footer {
   padding: 1rem 1.5rem;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #E0E0E0;
+}
+
 header {
   background: #f9f9f9;
   display: flex;
@@ -56,7 +67,7 @@ header ul {
 }
 
 header ul li {
-  margin: 0 1rem;
+  margin: 0 0 0 1rem;
 }
 
 section {
@@ -117,7 +128,7 @@ section {
   flex-wrap: wrap;
   /* background: pink; */
   width: 100%;
-  margin: 3rem 0;
+  margin-top: 3rem;
 }
 
 .weather_card-container li {
@@ -211,17 +222,13 @@ button:hover a, input[type="submit"]:hover {
   height: 100%;
 }
 
-.user_logged-in {
-  padding: 0 .5rem;
-}
-
 .user_logged-out fieldset {
   border: none;
 }
 
 .search_section {
   background: #f9f9f9;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 1rem 1.5rem;
 }
 
 .user_logged-out .weather_card {

@@ -17,7 +17,7 @@ var server = require('http').createServer(app);
 require('dotenv').config(); // secret stuff
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.mongo)
+mongoose.connect(process.env.mongo);
 
 mongoose.connection.on('error' , function (err) {
   console.log('Something went wrong with MONGODB ->' , err.message)
@@ -44,7 +44,7 @@ app.set('view engine' , 'ejs')
   .use(passport.initialize())
   .use(passport.session());
 
-  app.use(function (req, res, next) {
+  app.use((req, res, next) => {
     res.locals.h = helpers;
     res.locals.flashes = req.flash();
     next();

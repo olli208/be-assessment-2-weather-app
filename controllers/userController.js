@@ -35,7 +35,7 @@ exports.resize = async (req, res, next) => {
   next();
 }
 
-exports.renderLogin = function(req , res) {
+exports.renderLogin = (req , res) => {
   res.render('login');
 }
 
@@ -43,7 +43,7 @@ exports.renderRegister = (req, res) => {
   res.render('register');
 }
 
-exports.register = function(req, res, next) {
+exports.register = (req, res, next) => {
   console.log('REQ.BODY -->' , req.body);
   var userObject = {
     username: req.body.username,
@@ -57,7 +57,7 @@ exports.register = function(req, res, next) {
 
   const user = new User(userObject)
 
-  User.register(user, req.body.password , function(err, user) {
+  User.register(user, req.body.password , (err, user) => {
     console.log('NEW USER' , user);
     next()
   });
@@ -72,18 +72,18 @@ exports.addLocation = (req, res) => {
   }
 
   User.findOne({username: req.user.username})
-    .then(function(obj) {
+    .then((obj) => {
       console.log(obj);
       obj.locations.push(locationQuery);
       obj.save()
         .then(function(){
           res.redirect('/')
         })
-        .catch(function(err) {
+        .catch((err) => {
           console.log(err);
         });
     })
-    .catch(function(err) {
+    .catch((err) => {
       console.log(err);
     })
 
@@ -112,8 +112,8 @@ exports.editLocation = (req, res) => {
   User.findOne({
     _id: req.params.userid
   })
-    .then(function(user) {
-      var location = user.locations.filter(function (location) {
+    .then((user) => {
+      var location = user.locations.filter((location) => {
         return location._id == req.params.id
       }).pop();
 
@@ -126,7 +126,7 @@ exports.editLocation = (req, res) => {
         lng: location.lng
       })
     })
-    .catch(function(err) {
+    .catch((err) => {
       console.log(err);
     })
 }
@@ -146,10 +146,26 @@ exports.updateLocation = (req, res) => {
         "locations.$": updateLocation
     }
   })
-  .then(function(obj) {
+  .then((obj) => {
     res.redirect('/');
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.log('ERROR EDIT LOCATION' ,err);
   })
+}
+
+exports.removeLocation = (req, res) => {
+  console.log('DELETE' , req.params);
+
+  User.update(
+    { "_id": req.params.userid, "locations._id": req.params.id },
+    { $pull : { locations : { "_id": req.params.id } } }, false, false )
+  .then((obj) => {
+    console.log(obj)
+    res.redirect('/');
+  })
+  .catch((err) => {
+    console.log('ERROR remove LOCATION' ,err);
+  })
+   
 }

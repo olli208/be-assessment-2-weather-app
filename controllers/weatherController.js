@@ -7,7 +7,7 @@ exports.search = (req, res) => {
   if (!req.user) {
     // When not logged in, there is only one location so do this
     rp(`https://api.darksky.net/forecast/${process.env.DS_KEY}/${locationQuery.lat},${locationQuery.lng}?units=si`)
-    .then(function(body) {
+    .then((body) => {
       var data = JSON.parse(body);
 
       var address = locationQuery.address;
@@ -24,7 +24,7 @@ exports.search = (req, res) => {
         daily: daily,
       });
     })
-    .catch(function(err) {
+    .catch((err) => {
       console.log(err)
     });
   } else {
@@ -32,7 +32,7 @@ exports.search = (req, res) => {
 
     var promises = locationQuery.map(function(obj) {
       return rp(`https://api.darksky.net/forecast/${process.env.DS_KEY}/${obj.lat},${obj.lng}?units=si`)
-        .then(function(body) {
+        .then((body) => {
           var data = JSON.parse(body);
 
           var weatherData = {
@@ -47,14 +47,14 @@ exports.search = (req, res) => {
 
           return weatherData;
         })
-        .catch(function(err) {
+        .catch((err) => {
           console.log('couldnt get weather', err);
           throw err
         });
     });
 
     return Promise.all(promises)
-      .then(function (results) {
+      .then((results) => {
         // When we queried every location render the data we returned...
 
         res.render('index', {

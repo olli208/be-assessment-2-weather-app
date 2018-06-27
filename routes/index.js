@@ -41,4 +41,6 @@ userController.upload,
 userController.resize, 
 userController.updateLocation);
 
+router.get('/:userid/remove/:id', userController.removeLocation);
+
 module.exports = router;
