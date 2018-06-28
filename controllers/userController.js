@@ -161,7 +161,6 @@ exports.removeLocation = (req, res) => {
     { "_id": req.params.userid, "locations._id": req.params.id },
     { $pull : { locations : { "_id": req.params.id } } }, false, false )
   .then((obj) => {
-    console.log(obj)
     res.redirect('/');
   })
   .catch((err) => {

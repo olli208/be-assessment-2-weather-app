@@ -49,10 +49,10 @@ header, footer {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  right: 0;
   color: #E0E0E0;
+  width: 100%;
 }
 
 header {
@@ -228,10 +228,25 @@ button:hover a, input[type="submit"]:hover {
 
 .search_section {
   background: #f9f9f9;
-  padding: 0 1.5rem 1rem 1.5rem;
+  padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
 .user_logged-out .weather_card {
   width: 50%;
   margin: 3rem auto;
+}
+
+@media (min-width: 60em) {
+  section {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .welcome_msg {
+    background: none;
+  }
+
+  .search_section {
+    background: none;
+  }
 }
