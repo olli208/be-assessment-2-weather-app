@@ -50,8 +50,7 @@ npm install
 Then add these to the server.js file in the root of the project. You can get dark sky api keys [here (ds)](https://darksky.net/dev). 
 ```
 PORT=9999
-DS_KEY=f326d75591330148a6021024442d7830
-SEARCH_KEY=5b7bee1f9de1018c24f766cfe6ef715e
+DS_KEY=<dark sky key>
 mongo=mongodb://<username>:<password>@ds163730.mlab.com:63730/<db-name>
 
 ```
