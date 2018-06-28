@@ -34,6 +34,7 @@ This is a nodejs app using express. MongoDB is used for storing users and locati
     "request-promise": "^4.2.1",
     "uuid": "^3.3.0"
 ```
+Passport is used for controller user logins, registers and logouts, multer is used for uploading files, and jimp for resizing photos. connect flash is used for flash messages when user logs in or errors. uuid creates a random string for every image, so photo's with the same name don't get deleted. request-promise is a promise based api request library used for getting data from the Dark Sky api for example.
 
 ## Install the app
 To see it live and go trough the Oauth flow your self clone this repo, run the following command in the terminal
